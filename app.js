@@ -23,9 +23,18 @@ app.get("/",(req,res)=>{
 });
 
 
-app.get("/testListing", (req, res)=> {
-
-})
+app.get("/testListing", async(req, res)=> {
+    let sampleListing = new Listing({
+        title : "My villa ",
+        discription : "by the beach",
+        price : 1200,
+        location : "goa",
+        country : "india",
+    });
+    await sampleListing.save();
+    console.log("sample was save");
+    res.send("sucessful testing");
+});
 
 app.listen(8080, ()=>{
     console.log("server is listening to port 8080");
