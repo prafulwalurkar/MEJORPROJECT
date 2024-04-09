@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const Listing = require("../listing.js");
+const Listing = require("../models/listing.js");
 
 
 
