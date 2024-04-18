@@ -1,4 +1,5 @@
-const samplelisting = new Schema({
+const samplelisting = [
+    {
     title: {
         type : String,
         required : true,
@@ -6,7 +7,7 @@ const samplelisting = new Schema({
     descrption: String,
     image: {
         type : String,
-        default:"https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-980x653.jpg"
+        default:"https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-980x653.jpg",
         set: (v) => 
         v ==="" ? "https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-980x653.jpg"
         : v,
@@ -14,7 +15,8 @@ const samplelisting = new Schema({
     price: Number,
     location: String,
     country: String,
-});
+},
+];
 
+module.exports = {data:samplelisting};
 
-module.exports = {data: samplelisting};
