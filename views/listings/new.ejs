@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wandarLust</title>
+</head>
+<body>
+    <h3>Create a New Listing</h3>
+    <form method="POST" action="/listings">
+        <input name="listing[title]" placeholder="Enter title" type="text"/>
+        <br/><br/>
+        <textarea 
+        name="listing[description]" 
+        placeholder="Enter the description" 
+        cols="30" rows="10">
+        </textarea>
+        <br/><br/>
+        <input name="listing[image]" 
+        placeholder="Enter image url/link" 
+        type="text"/>
+        <br/><br/>
+        <input name="listing[price]" placeholder="Enter price" type="number"/>
+        <br/><br/>
+        
+        <input name="listing[country]" placeholder="Enter country" type="text"/>
+        <br/><br/>
+        
+        <input name="listing[location]" placeholder="Enter location" type="text"/>
+        <br/><br/>
+        <button>Add</button>
+        
+    </form>
+    
+</body>
+</html>
