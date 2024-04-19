@@ -35,7 +35,7 @@ app.get("/listings",async(req,res) =>{
 
 //New Route
 app.get("/listings/new",async(req, res)=>{
-    res.render("./listing/new.ejs",{listing});
+    res.render("./listing/new.ejs");
 });
 
 //show routing
