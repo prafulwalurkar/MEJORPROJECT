@@ -11,9 +11,10 @@
   "dependencies": {
     "cjs": "^0.0.11",
     "ejs": "^3.1.10",
+    "ejs-mate": "^4.0.0",
     "express": "^4.19.2",
+    "method-override": "^3.0.0",
     "mongoose": "^8.3.2"
   },
-  "description": "��#\u0000 \u0000M\u0000E\u0000J\u0000O\u0000R\u0000P\u0000R\u0000O\u0000J\u0000E\u0000C\u0000T\u0000\r\u0000 \u0000#\u0000 \u0000M\u0000E\u0000J\u0000O\u0000R\u0000P\u0000R\u0000O\u0000J\u0000E\u0000C\u0000T\u0000\r\u0000 \u0000",
-  "devDependencies": {}
+  "description": "��#\u0000 \u0000M\u0000E\u0000J\u0000O\u0000R\u0000P\u0000R\u0000O\u0000J\u0000E\u0000C\u0000T\u0000\r\u0000 \u0000#\u0000 \u0000M\u0000E\u0000J\u0000O\u0000R\u0000P\u0000R\u0000O\u0000J\u0000E\u0000C\u0000T\u0000\r\u0000 \u0000"
 }

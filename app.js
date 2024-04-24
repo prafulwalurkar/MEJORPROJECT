@@ -3,8 +3,8 @@ const app = express();
 const mongoose = require("mongoose");
 const Listing = require("./models/listing.js");
 const path = require("path");
-
-
+const methodOverride = require("method-override");//method override
+const ejsMate =require("ejs-mate");//layout for css like nav bar
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 
@@ -22,6 +22,8 @@ async function main(){
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname,"views"));
 app.use(express.urlencoded({extended: true}));
+app.use(methodOverride("_method"));
+app.engine('ejs', ejsMate);
 
 app.get("/",(req,res)=>{
     res.send("Hi I am root");
@@ -35,7 +37,7 @@ app.get("/listings",async(req,res) =>{
 
 //New Route
 app.get("/listings/new",async(req, res)=>{
-    res.render("./listing/new.ejs");
+    res.render("./listings/new.ejs");
 });
 
 //show routing
@@ -52,6 +54,8 @@ app.post("/listings",async (req, res)=>{
     const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect("./listings");
+    //let listing = req.body.listing;
+    //console.log(listing);
 });
 
 //Edit Route
@@ -68,7 +72,7 @@ app.get("/listings/:id/edit", async(req,res)=>{
 app.put("/listings/:id", async (req,res)=> {
     let { id }=req.params;
     await Listing.findByIdAndUpdate(id,{...req.body.listing});
-    res.redirect("./listings/${id}");
+    res.redirect('/listings');
 
 });
 
@@ -78,7 +82,7 @@ app.delete("/listings/:id", async(req, res)=>{
     let {id}= req.params;
     let deletedListing =await Listing.findByIdAndDelete(id);
     console.log(deletedListing);
-    res.redirect("./listings");
+    res.redirect("/listings");
 
 });
 
