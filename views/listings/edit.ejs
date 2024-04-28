@@ -1,28 +1,45 @@
 <% layout("/layouts/boilerplate")%>
-<body>
+<div class="row">
+    <div class="col-8 offset-2">
     <h3>Edit your Listing</h3>
         <form method="POST" action="/listings/<%= listing._id%>?_method=PUT">
-        <input name="listing[title]" value="<%= listing.title %>" type="text"/>
-        <br/><br/>
-        <textarea name="listing[description]" value="
-            <%= listing.description %>"></textarea>
-            <br/><br/>
+
+            <div class="mb-2">
+             <label for="title" class="form-label">Title</label>
+            <input name="listing[title]" value="<%= listing.title %>" type="text"/>
+            </div>
+            <div class="mb-2">
+            <label for="description" class="form-label">Discription</label>
+            <textarea name="listing[description]" value="
+            <%= listing.description %>">Discription</textarea>                     
+            </div>
+            <div class="mb-2">
+            <label for="image" class="form-label">Image</label>
             <input name="listing[image]" value="<%= listing.image %>" type="text"/>
-        <br/><br/>
-        <input name="listing[price]" value="<%= listing.price %>" type="number"/>
-        <br/><br/>
-        <input 
-        name="listing[country]" 
-        value="<%= listing.country %>" 
-        type="text"
-        />
-        <br/><br/>
-        <input 
-        name="listing[location]" 
-        value="<%= listing.location %>" 
-        type="text"
-        />
-        <br/><br/>
-        <button>Edit</button>        
+            </div>
+            <div class="mb-2">
+            <label for="price" class="form-label">Add catchy Title</label>
+            <input name="listing[price]" value="<%= listing.price %>" type="number"/>
+            </div>
+            <div class="mb-2">
+            <label for="country" class="form-label">Add catchy Title</label>
+            <input 
+            name="listing[country]" 
+            value="<%= listing.country %>" 
+            type="text"
+            />
+            </div>
+            <div class="mb-2">
+            <label for="location" class="form-label">Add catchy Title</label>
+            <input 
+            name="listing[location]" 
+            value="<%= listing.location %>" 
+            type="text"
+            />
+            </div>
+        </div>
+        
+        <button class="edit-btn">Edit</button>
+        </br></br>        
         </form>
-    </body>
+    </div>
