@@ -8,12 +8,19 @@
                 <label for="title" class="form-label">Title</label>
                 <input name="listing[title]" value="<%= listing.title %>" type="text" class="form-control"/>
             </div>
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                 <label for="description" class="form-label">Discription</label></br>                  
                 <textarea name="listing[description]" cols="30" rows="5" 
                 value="<%= listing.description %>" type="text" class="form-control">
                 </textarea>                     
-            </div>
+            </div> -->
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Discription</label></br>                  
+                <textarea name="listing[description]" cols="30" rows="5" 
+                type="text" class="form-control"> <%= listing.description %> 
+                </textarea>                     
+            </div> 
             
             <div class="mb-3">
                 <label for="image" class="form-label">Image</label>
@@ -41,7 +48,7 @@
             </div>
         </div>
         
-        <button class="btn btn-dark edit-btn col-2 offset-2">Edit</button>
+        <button class="btn btn-dark edit-btn col-2 offset-2 mt-3">Edit</button>
         </br></br>        
         </form>
     </div>

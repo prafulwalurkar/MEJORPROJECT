@@ -15,12 +15,14 @@ body{
 
 }
 
-.fa-compass{
+.fa-compass,
+.fa-airbnb{
     color: #fe424d;
-    font-size: 2rem;
+    font-size: 3rem;
+    padding: 60%;
 }
 .nav-link{
-    color: #222222 !important;
+    color: #222 !important;
 }
 
 
@@ -39,7 +41,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-
+    
 }
 .f-info-socials i{
     font-size: 1.2rem;
@@ -103,4 +105,9 @@ body{
 .show-card{
     padding-right: 0;
     padding-left: 0;
+    
 }
+.f-info-brand{
+    color: #fe424d;
+}
+
