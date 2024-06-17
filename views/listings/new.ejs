@@ -2,10 +2,10 @@
 <div class="row">
     <div class="col-8 offset-2">
     <h3>Create a New Listing</h3>
-    <form method="POST" action="/listings">
+    <form method="POST" action="/listings" nonvalidate class="needs-validation">
         <div class="mb-2">
         <label for="title" class="form-label">Add catchy Title</label>
-        <input name="listing[title]" placeholder="Enter title" type="text" class="form-control"/>
+        <input name="listing[title]" placeholder="Enter title" type="text" class="form-control" required/>
         </div>
         
         <div class="mb-2">
@@ -13,7 +13,7 @@
         <textarea 
         name="listing[description]" 
         placeholder="Enter the description" 
-        cols="30" rows="5" class="form-control">
+        cols="30" rows="5" class="form-control" required >
         </textarea>
         </div>
 
@@ -26,18 +26,18 @@
         <div class="row">
             <div class="mb-2 col-4">
                 <label for="" class="form-label">Price</label>
-                <input name="listing[price]" placeholder="Enter price" type="number" class="form-control"/>
+                <input name="listing[price]" placeholder="Enter price" type="number" class="form-control" required/>
                 </div>
                 <div class="mb-2 col-8">
                 <label for="" class="form-label">Country</label>
-                <input name="listing[country]" placeholder="Enter country" type="text" class="form-control"/>
+                <input name="listing[country]" placeholder="Enter country" type="text" class="form-control" required/>
                 </div>
         </div>
      
 
         <div class="mb-2">
         <label for="" class="form-label">Location</label>
-        <input name="listing[location]" placeholder="Enter location" type="text" class="form-control"/>
+        <input name="listing[location]" placeholder="Enter location" type="text" class="form-control" required />
         </div>
         <button class="btn btn-dark add-btn">Add</button>
     </br></br>

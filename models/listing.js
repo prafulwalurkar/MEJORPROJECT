@@ -19,7 +19,7 @@ const review = require("./review");
      reviews:[
         {
         type: Schema.Types.ObjectId,
-        ref:"review",
+        ref:"Review",
      }
     ]
  });

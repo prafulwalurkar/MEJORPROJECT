@@ -7,6 +7,7 @@ const methodOverride = require("method-override");//method override
 const ejsMate =require("ejs-mate");//layout for css like nav bar
 const Review =require("./models/review.js");
 
+
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 
 main().then(()=>{
@@ -74,7 +75,7 @@ app.get("/listings/:id/edit", async(req,res)=>{
 app.put("/listings/:id", async (req,res)=> {
     let { id }=req.params;
     await Listing.findByIdAndUpdate(id,{...req.body.listing});
-    res.redirect('/listings');
+    res.redirect("./listings/edit.ejs");
 
 });
 
@@ -91,7 +92,7 @@ app.delete("/listings/:id", async(req, res)=>{
 // //REVIEW
 // //POST ROUTE
 
-app.post("/listings/:id/review.js",async (req, res)=>{
+app.post("/listings/:id/reviews",async (req, res)=>{
     let listing =await Listing.findById(req.params.id);
     let newReview = new Review(req.body.review);
     listing.reviews.push(newReview);
@@ -100,10 +101,26 @@ app.post("/listings/:id/review.js",async (req, res)=>{
     await listing.save();
     
     console.log("new review save");
-    res.send("new review save");
+    console.log("new review save");
     res.redirect("/listings");
+    
+
 
 });
+
+// app.post("/listings/:id/review.js",async (req, res)=>{
+//     let listing =await Listing.findById(req.params.id);
+//     let newReview = new Review(req.body.review);
+//     listing.reviews.push(newReview);
+
+//     await newReview.save();
+//     await listing.save();
+    
+//     console.log("new review save");
+//     res.send("new review save");
+//     res.redirect("/listings");
+
+// });
 
 
 
