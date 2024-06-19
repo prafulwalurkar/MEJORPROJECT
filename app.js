@@ -5,6 +5,7 @@ const Listing = require("./models/listing.js");
 const path = require("path");
 const methodOverride = require("method-override");//method override
 const ejsMate =require("ejs-mate");//layout for css like nav bar
+const { lisingschema, listingschema } = require("./schema.js");
 const Review =require("./models/review.js");
 
 
@@ -32,6 +33,18 @@ app.get("/",(req,res)=>{
     res.send("Hi I am root");
 });
 
+
+const validatedListing = (req, res, next)=> {
+    let { error } = listingschema.validate(require.body);
+    if(error){
+        let errMsg =error.details.map((el) => el.message).join(",");
+        throw new  ExpressError(400, errMsg);
+
+    } else{
+        next();
+    }
+};
+
 //Index Route
 app.get("/listings",async(req,res) =>{
     const allListings = await Listing.find({});
@@ -46,20 +59,20 @@ app.get("/listings/new",async(req, res)=>{
 //show routing
 app.get("/listings/:id", async (req, res) => {
     let { id } = req.params;
-    const listing = await Listing.findById(id);
+    const listing = await Listing.findById(id).populate("reviews");
     res.render("./listings/show.ejs", { listing });
 
 });
 
 //Create Route
 
-app.post("/listings",async (req, res)=>{
+app.post("/listings", validatedListing ,warpAsync(async (req, res, next)=>{
     const newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect("./listings");
-    //let listing = req.body.listing;
-    //console.log(listing);
-});
+    
+})
+);
 
 //Edit Route
 
@@ -92,21 +105,21 @@ app.delete("/listings/:id", async(req, res)=>{
 // //REVIEW
 // //POST ROUTE
 
-app.post("/listings/:id/reviews",async (req, res)=>{
+app.post("/listings/:id/reviews", 
+    validateReview,
+    warpAsync(async (req, res)=>{
     let listing =await Listing.findById(req.params.id);
     let newReview = new Review(req.body.review);
+    
     listing.reviews.push(newReview);
 
     await newReview.save();
     await listing.save();
-    
-    console.log("new review save");
-    console.log("new review save");
-    res.redirect("/listings");
-    
 
-
-});
+    res.redirect('/listings/${listing._id}');
+    
+})
+);
 
 // app.post("/listings/:id/review.js",async (req, res)=>{
 //     let listing =await Listing.findById(req.params.id);

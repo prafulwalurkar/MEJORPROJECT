@@ -29,22 +29,30 @@
         <div class="card col-8 offset-3 mb-3">
              
       <h3>Leave a Review</h3>
-       <form action="/listings/<%= listing.id%>/reviews" method="POST" novalidate class="needs-validation">
+       <form action="/listings/<%= listing.id %>/reviews" method="POST" novalidate class="needs-validation">
           <div class="mb-3 mt-3">
             <label for="rating" class="form-label">Rating</label>
             <input type="range" min="1" max="5" id="review[rating]" class="form-control">
           </div>
           <div class="mb-3 mt-3">
             <label for="comment" class="form-label">Comments</label>
-            <textarea name="review[Comments]" id="comment" cols="20" rows="10" class="form-control">
-              required
-            </textarea>
+            <textarea name="review[Comments]" id="comment" cols="20" rows="10" class="form-control" required>
             
+            </textarea>
+            <div class="invalid-feedback">please add some Comments for review</div>
             <br>
             <button class="btn btn-outline-dark">Submit</button>
           </div>
 
       </form>
+      <hr>
+      <h1>All Reviews</h1>
+
+      <p><%=listing.review >{%>
+        <li><%=review.comment%><%=reveiw.rating %>Star</li>
+
+      <% } %>
+    </p>
       </div>
     </div>  
 
