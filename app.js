@@ -5,7 +5,9 @@ const Listing = require("./models/listing.js");
 const path = require("path");
 const methodOverride = require("method-override");//method override
 const ejsMate =require("ejs-mate");//layout for css like nav bar
-const { lisingschema, listingschema } = require("./schema.js");
+const warpAsync = require("./utils/wrapAsync.js");
+const { listingSchema , reviewSchema } = require("./schema.js");
+
 const Review =require("./models/review.js");
 
 
@@ -38,13 +40,22 @@ const validatedListing = (req, res, next)=> {
     let { error } = listingschema.validate(require.body);
     if(error){
         let errMsg =error.details.map((el) => el.message).join(",");
-        throw new  ExpressError(400, errMsg);
-
+        throw new ExpressError(400, errMsg);
     } else{
         next();
     }
 };
 
+
+const validatedReview = (req, res, next)=> {
+    let { error } = reviewSchema.validate(require.body);
+    if(error){
+        let errMsg =error.details.map((el) => el.message).join(",");
+        throw new ExpressError(400, errMsg);
+    } else{
+        next();
+    }
+};
 //Index Route
 app.get("/listings",async(req,res) =>{
     const allListings = await Listing.find({});
@@ -105,8 +116,7 @@ app.delete("/listings/:id", async(req, res)=>{
 // //REVIEW
 // //POST ROUTE
 
-app.post("/listings/:id/reviews", 
-    validateReview,
+app.post("/listings/:id/reviews", validatedReview,
     warpAsync(async (req, res)=>{
     let listing =await Listing.findById(req.params.id);
     let newReview = new Review(req.body.review);
