@@ -7,7 +7,7 @@ const methodOverride = require("method-override");//method override
 const ejsMate =require("ejs-mate");//layout for css like nav bar
 const warpAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
-const { listingSchema , reviewSchema } = require("./schema.js");
+const { listingschema , reviewSchema } = require("./schema.js");
 
 const Review =require("./models/review.js");
 
@@ -144,8 +144,8 @@ app.all("*",(req, res, next)=>{
 
 app.use((err, req, res, next)=> {
     let {statusCode=500, message="something went wrong"} = err;
-    res.status(statusCode).render("error.ejs", {message});
-   // res.status(statusCode).send(message);
+    res.status(statusCode).render("error.ejs", {err});
+    res.status(statusCode).send(message);
 });
 
 app.listen(8080, ()=>{
